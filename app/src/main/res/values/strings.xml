@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">NMedia</string>
     <string name="Hello">NMedia!</string>
-    <string name="avatar_description">auther avatar</string>
+    <string name="avatar_description">author avatar</string>
     <string name="options_menu">options menu</string>
+    <string name="likes">likes</string>
+    <string name="number_likes">25</string>
+    <string name="share">share</string>
+    <string name="number_share">18</string>
+    <string name="number_vews">30</string>
+    <string name="vews">vews</string>
+
 </resources>

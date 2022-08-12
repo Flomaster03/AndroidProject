@@ -4,4 +4,10 @@
     <string name="Hello">НМедиа!</string>
     <string name="avatar_description">Аватар автора</string>
     <string name="options_menu">Меню опции</string>
+    <string name="likes">Понравилось</string>
+    <string name="number_likes">25</string>
+    <string name="share">Поделиться</string>
+    <string name="number_share">18</string>
+    <string name="number_vews">90</string>
+    <string name="vews">Просмотры</string>
 </resources>
