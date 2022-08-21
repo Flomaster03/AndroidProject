@@ -18,7 +18,7 @@
         tools:srcCompat="@sample/posts.json/data/authorAvatar" />
 
     <TextView
-        android:id="@+id/autherName"
+        android:id="@+id/authorName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintEnd_toStartOf="@id/options"
         app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toBottomOf="@id/autherName"
+        app:layout_constraintTop_toBottomOf="@id/authorName"
         tools:text="@sample/posts.json/data/published" />
 
     <ImageButton
@@ -51,7 +51,7 @@
         android:layout_height="@dimen/posts_avatar_size"
         android:background="@android:color/transparent"
         android:contentDescription="@string/options_menu"
-        android:src="@drawable/icon_options_24"
+        android:src="@drawable/ic_options_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
@@ -95,7 +95,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/item_likes"
+        android:id="@+id/itemLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_spacing"
@@ -112,13 +112,13 @@
         android:contentDescription="@string/share"
         android:layout_marginStart="@dimen/common_spacing"
         android:src="@drawable/ic_share_24"
-        app:layout_constraintStart_toEndOf="@id/item_likes"
+        app:layout_constraintStart_toEndOf="@id/itemLikes"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         tools:ignore="ImageContrastCheck"
         />
 
     <TextView
-        android:id="@+id/item_share"
+        android:id="@+id/itemShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_spacing"
@@ -128,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@id/barrier2" />
 
     <TextView
-        android:id="@+id/item_vews"
+        android:id="@+id/itemVews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/text_spacing"
@@ -145,7 +145,7 @@
         android:contentDescription="@string/vews"
         android:layout_marginEnd="@dimen/text_spacing"
         android:src="@drawable/ic_visibility_24"
-        app:layout_constraintEnd_toStartOf="@id/item_vews"
+        app:layout_constraintEnd_toStartOf="@id/itemVews"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         tools:ignore="ImageContrastCheck"
         />
