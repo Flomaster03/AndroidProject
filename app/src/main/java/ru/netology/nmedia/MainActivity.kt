@@ -2,6 +2,7 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.DrawableRes
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
@@ -24,12 +25,12 @@ class MainActivity : AppCompatActivity() {
             post.likedByMe = !post.likedByMe
             binding.firstPost.likes.setImageResource(getLikeIconResId(post.likedByMe))
             if (post.likedByMe) post.likes++ else post.likes--
-            binding.firstPost.itemLikes.text = CountCheck(post.likes)
+            binding.firstPost.itemLikes.text = countCheck(post.likes)
         }
 
         binding.firstPost.share.setOnClickListener {
             post.shares++
-            binding.firstPost.itemShare.text = CountCheck(post.shares)
+            binding.firstPost.itemShare.text = countCheck(post.shares)
         }
 
     }
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     @DrawableRes
     private fun getLikeIconResId(liked: Boolean) = if(liked) R.drawable.ic_liked_24 else R.drawable.ic_like_24
 
-    private fun CountCheck(numberInput : Int): String {
+    private fun countCheck(numberInput : Int): String {
         val number = when (numberInput) {
             in 0..999 -> "$numberInput"
             in 1000..1099 -> "${numberInput / 1000}K"
