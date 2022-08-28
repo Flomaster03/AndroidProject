@@ -2,35 +2,32 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
 import androidx.annotation.DrawableRes
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.viewModel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<PostViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val post = Post(
-            id = 0L,
-            author = "Нетология. Университет интернет-профессий будущего",
-            content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fy",
-            published = "20 августа 2022"
-        )
-        binding.render(post)
+        viewModel.data.observe(this) { post ->
+            binding.render(post)
+
+        }
+
         binding.firstPost.likes.setOnClickListener {
-            post.likedByMe = !post.likedByMe
-            binding.firstPost.likes.setImageResource(getLikeIconResId(post.likedByMe))
-            if (post.likedByMe) post.likes++ else post.likes--
-            binding.firstPost.itemLikes.text = countCheck(post.likes)
+            viewModel.onLikeClicked()
         }
 
         binding.firstPost.share.setOnClickListener {
-            post.shares++
-            binding.firstPost.itemShare.text = countCheck(post.shares)
+            viewModel.onShareClicked()
         }
 
     }
@@ -40,13 +37,15 @@ class MainActivity : AppCompatActivity() {
         firstPost.published.text = post.published
         firstPost.content.text = post.content
         firstPost.likes.setImageResource(getLikeIconResId(post.likedByMe))
-        firstPost.itemLikes.text = post.likes.toString()
-        firstPost.itemShare.text = post.shares.toString()
+        firstPost.itemLikes.text = countCheck(post.likes)
+        firstPost.itemShare.text = countCheck(post.shares)
     }
-    @DrawableRes
-    private fun getLikeIconResId(liked: Boolean) = if(liked) R.drawable.ic_liked_24 else R.drawable.ic_like_24
 
-    private fun countCheck(numberInput : Int): String {
+    @DrawableRes
+    private fun getLikeIconResId(liked: Boolean) =
+        if (liked) R.drawable.ic_liked_24 else R.drawable.ic_like_24
+
+    private fun countCheck(numberInput: Int): String {
         val number = when (numberInput) {
             in 0..999 -> "$numberInput"
             in 1000..1099 -> "${numberInput / 1000}K"
