@@ -18,19 +18,15 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = PostsAdapter(
-            onLikeClicked = { post ->
-                viewModel.onLikeClicked(post)
-            },
-            onShareClicked = { post ->
-                viewModel.onShareClicked(post)
-            }
-        )
+        val adapter = PostsAdapter(viewModel)
+
         binding.postsRecyclerView.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
-
         }
-
+        binding.saveButton.setOnClickListener {
+            val content = binding.inputContent.text.toString()
+            viewModel.onSaveButtonClick(content)
+        }
     }
 }

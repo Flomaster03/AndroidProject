@@ -26,7 +26,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@id/published"
-        app:layout_constraintEnd_toStartOf="@id/options"
+        app:layout_constraintEnd_toStartOf="@id/optionsMenu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
         tools:text="@sample/posts.json/data/autherName" />
@@ -40,13 +40,13 @@
         android:ellipsize="end"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toStartOf="@id/options"
+        app:layout_constraintEnd_toStartOf="@id/optionsMenu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/authorName"
         tools:text="@sample/posts.json/data/published" />
 
     <ImageButton
-        android:id="@+id/options"
+        android:id="@+id/optionsMenu"
         android:layout_width="@dimen/posts_avatar_size"
         android:layout_height="@dimen/posts_avatar_size"
         android:background="@android:color/transparent"
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar, published, options"
+        app:constraint_referenced_ids="avatar, published, optionsMenu"
          />
 
     <TextView

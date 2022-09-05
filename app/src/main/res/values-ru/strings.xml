@@ -10,4 +10,6 @@
     <string name="number_share">18</string>
     <string name="number_vews">90</string>
     <string name="vews">Просмотры</string>
+    <string name="remove">Удаление</string>
+    <string name="post_text">Текст поста</string>
 </resources>
