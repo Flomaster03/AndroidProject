@@ -8,6 +8,7 @@ import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.util.hideKeyboard
+import ru.netology.nmedia.util.showKeyboard
 import ru.netology.nmedia.viewModel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -29,12 +30,21 @@ class MainActivity : AppCompatActivity() {
             with(binding.inputContent) {
                 val content = text.toString()
                 viewModel.onSaveButtonClick(content)
-                clearFocus()
-                hideKeyboard()
+
             }
         }
-        viewModel.currentPost.observe(this){currentPost ->
-            binding.inputContent.setText(currentPost?.content)
+        viewModel.currentPost.observe(this) { currentPost ->
+            with(binding.inputContent) {
+                val content = currentPost?.content
+                setText(content)
+                if (content != null) {
+                    requestFocus()
+                    showKeyboard()
+                } else {
+                    clearFocus()
+                    hideKeyboard()
+                }
+            }
 
         }
     }
