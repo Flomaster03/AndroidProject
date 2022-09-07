@@ -16,7 +16,7 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     val currentPost = MutableLiveData<Post?>(null)
 
     fun onSaveButtonClick(content: String) {
-        if(content.isBlank()) return
+        if (content.isBlank()) return
 
         val post = currentPost.value?.copy(
             content = content
@@ -27,6 +27,10 @@ class PostViewModel : ViewModel(), PostInteractionListener {
             published = "05 сентября 2022"
         )
         repository.save(post)
+        currentPost.value = null
+    }
+
+    fun onCancelButtonClick() {
         currentPost.value = null
     }
 

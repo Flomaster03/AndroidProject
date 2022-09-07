@@ -2,8 +2,10 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.DrawableRes
+import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
@@ -26,13 +28,25 @@ class MainActivity : AppCompatActivity() {
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
+
         binding.saveButton.setOnClickListener {
             with(binding.inputContent) {
                 val content = text.toString()
                 viewModel.onSaveButtonClick(content)
-
+                hideKeyboard()
             }
         }
+
+        binding.canselButton.setOnClickListener {
+            binding.canselGroup.visibility = View.GONE
+            binding.inputContent.hideKeyboard()
+            viewModel.onCancelButtonClick()
+        }
+
+        binding.inputContent.setOnClickListener {
+            binding.canselGroup.visibility = View.VISIBLE
+        }
+
         viewModel.currentPost.observe(this) { currentPost ->
             with(binding.inputContent) {
                 val content = currentPost?.content
@@ -43,9 +57,9 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     clearFocus()
                     hideKeyboard()
+
                 }
             }
-
         }
     }
 }

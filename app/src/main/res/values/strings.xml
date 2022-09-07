@@ -13,5 +13,6 @@
     <string name="post_text">PostText</string>
     <string name="description_post_like">SaveTextButton</string>
     <string name="edit">Edit</string>
+    <string name="editMessage">Edit text</string>
 
 </resources>
