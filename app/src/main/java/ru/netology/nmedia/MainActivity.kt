@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     clearFocus()
                     hideKeyboard()
-
                 }
             }
         }
