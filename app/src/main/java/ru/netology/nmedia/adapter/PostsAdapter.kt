@@ -48,6 +48,7 @@ class PostsAdapter(
             binding.share.setOnClickListener {
                 listener.onShareClicked(post)
             }
+            binding.optionsMenu.setOnClickListener{popupMenu.show()}
         }
 
         fun bind(post: Post) {
@@ -57,10 +58,10 @@ class PostsAdapter(
                 authorName.text = post.author
                 published.text = post.published
                 content.text = post.content
-                likes.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
-                itemLikes.text = countCheck(post.likes)
-                itemShare.text = countCheck(post.shares)
-                optionsMenu.setOnClickListener{popupMenu.show()}
+                likes.isChecked = post.likedByMe
+                likes.text = countCheck(post.likes)
+                share.text = countCheck(post.shares)
+
             }
         }
     }
