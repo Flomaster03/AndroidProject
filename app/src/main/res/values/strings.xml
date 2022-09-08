@@ -9,5 +9,10 @@
     <string name="number_share">18</string>
     <string name="number_vews">30</string>
     <string name="vews">vews</string>
+    <string name="remove">Remove</string>
+    <string name="post_text">PostText</string>
+    <string name="description_post_like">SaveTextButton</string>
+    <string name="edit">Edit</string>
+    <string name="editMessage">Edit text</string>
 
 </resources>
