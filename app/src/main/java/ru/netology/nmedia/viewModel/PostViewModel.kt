@@ -15,6 +15,8 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     val currentPost = MutableLiveData<Post?>(null)
 
+    val sharePostContent = SingleLiveIvent<String>()
+
     fun onSaveButtonClick(content: String) {
         if (content.isBlank()) return
 
@@ -42,6 +44,7 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     override fun onEditClicked(post: Post) {
         currentPost.value = post
+        sharePostContent.value = post.content
     }
 
 }
