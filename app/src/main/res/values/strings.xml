@@ -12,7 +12,10 @@
     <string name="remove">Remove</string>
     <string name="post_text">PostText</string>
     <string name="description_post_like">SaveTextButton</string>
+    <string name="description_post_share">Share</string>
     <string name="edit">Edit</string>
     <string name="editMessage">Edit text</string>
+    <string name="description_post_save">Ok</string>
+    <string name="add_post">Add Post</string>
 
 </resources>

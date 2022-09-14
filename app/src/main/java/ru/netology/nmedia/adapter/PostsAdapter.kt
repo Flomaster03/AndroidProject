@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -49,6 +50,8 @@ class PostsAdapter(
                 listener.onShareClicked(post)
             }
             binding.optionsMenu.setOnClickListener{popupMenu.show()}
+            binding.videoContent.setOnClickListener { listener.onVideoPlayButtonClicked(post)}
+            binding.videoPlay.setOnClickListener { listener.onVideoPlayButtonClicked(post)}
         }
 
         fun bind(post: Post) {
@@ -61,6 +64,8 @@ class PostsAdapter(
                 likes.isChecked = post.likedByMe
                 likes.text = countCheck(post.likes)
                 share.text = countCheck(post.shares)
+                videoVisibility.visibility =
+                    if (post.videoLink.isBlank()) View.GONE else View.VISIBLE
 
             }
         }
