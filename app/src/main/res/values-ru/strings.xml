@@ -15,4 +15,7 @@
     <string name="edit">Редактирование</string>
     <string name="description_post_like">Сохранить текст поста</string>
     <string name="editMessage">Редактировать пост</string>
+    <string name="add_post">Добавить пост</string>
+    <string name="description_post_save">сохранить пост</string>
+    <string name="chooser_share_post">Поделиться постом</string>
 </resources>

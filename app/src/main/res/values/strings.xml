@@ -14,5 +14,8 @@
     <string name="description_post_like">SaveTextButton</string>
     <string name="edit">Edit</string>
     <string name="editMessage">Edit text</string>
+    <string name="add_post">add post</string>
+    <string name="description_post_save">save post</string>
+    <string name="chooser_share_post">Share post</string>
 
 </resources>

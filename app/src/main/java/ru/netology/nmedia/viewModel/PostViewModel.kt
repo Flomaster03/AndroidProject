@@ -15,7 +15,7 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     val currentPost = MutableLiveData<Post?>(null)
 
-    fun onSaveButtonClick(content: String) {
+    fun onCreateNewPost(content: String) {
         if (content.isBlank()) return
 
         val post = currentPost.value?.copy(
