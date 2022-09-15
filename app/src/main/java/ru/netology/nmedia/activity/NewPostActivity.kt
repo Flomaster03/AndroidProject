@@ -21,7 +21,7 @@ class NewPostActivity : AppCompatActivity() {
         binding.ok.setOnClickListener {
             onOkButtonClicked(binding.edit.text?.toString())
         }
-        finish()
+
     }
 
     // смотрим, ввел ли что-то пользователь и если да, то кладем этот текст в интент
