@@ -11,8 +11,11 @@
     <string name="number_vews">90</string>
     <string name="vews">Просмотры</string>
     <string name="remove">Удаление</string>
+    <string name="description_post_share">Поделиться</string>
     <string name="post_text">Текст поста</string>
     <string name="edit">Редактирование</string>
     <string name="description_post_like">Сохранить текст поста</string>
     <string name="editMessage">Редактировать пост</string>
+    <string name="description_post_save">Подтвердить</string>
+    <string name="add_post">Добавить пост</string>
 </resources>
