@@ -14,7 +14,7 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     val data by repository::data
 
-    val sharePostContent = SingleLiveEvent<String>()
+    val shareEvent = SingleLiveEvent<Post>()
 
     val videoPlayEvent = SingleLiveEvent<String>()
 
@@ -54,7 +54,10 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     override fun onLikeClicked(post: Post) = repository.like(post.id)
 
-    override fun onShareClicked(post: Post) = repository.share(post.id)
+    override fun onShareClicked(post: Post) {
+        repository.share(post.id)
+        shareEvent.value = post
+    }
 
     override fun onRemoveClicked(post: Post) = repository.delete(post.id)
 

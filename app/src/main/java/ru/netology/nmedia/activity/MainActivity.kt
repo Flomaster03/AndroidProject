@@ -37,14 +37,14 @@ class MainActivity : AppCompatActivity() {
             viewModel.onAddButtonClicked()
         }
 
-        viewModel.sharePostContent.observe(this) { postContent ->
+
+        viewModel.shareEvent.observe(this) { post ->
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, postContent)
+                putExtra(Intent.EXTRA_TEXT, post.content)
                 type = "text/plain"
             }
-            val shareIntent =
-                Intent.createChooser(
+            val shareIntent = Intent.createChooser(
                     intent,
                     getString(R.string.description_post_share)
                 )
