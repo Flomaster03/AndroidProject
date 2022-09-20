@@ -44,10 +44,6 @@ class PostViewModel(
         currentPost.value = null
     }
 
-    fun onCancelButtonClick() {
-        currentPost.value = null
-    }
-
     fun onAddButtonClicked() {
         navigateToPostContentScreenEvent.call()
     }
