@@ -50,12 +50,10 @@ class FeedFragment : Fragment() {
             startActivity(shareIntent)
         }
 
- //       viewModel.videoPlayEvent.observe(viewLifecycleOwner) { videoLink ->
- //           val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
- //           if (intent.resolveActivity(packageManager) != null) {
- //               startActivity(intent)
- //           }
- //       }
+      viewModel.videoPlayEvent.observe(viewLifecycleOwner) { videoLink ->
+          val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
+          startActivity(intent)
+      }
 
         return binding.root
     }

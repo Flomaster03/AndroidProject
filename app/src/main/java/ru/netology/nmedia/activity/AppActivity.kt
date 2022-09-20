@@ -24,22 +24,24 @@ class AppActivity : AppCompatActivity() {
             if (it.action != Intent.ACTION_SEND) {
                 return@let
             }
+
+            val text = intent.getStringExtra(Intent.EXTRA_TEXT)
+            if (text.isNullOrBlank()) {
+                Snackbar.make(binding.root, "Текст отсутствует", Snackbar.LENGTH_INDEFINITE)
+                    .setAction(android.R.string.ok) { finish() }
+                    .show()
+                return@let
+            }
+
+            // Берется текст поста из этого неявного интента и передается в функцию редактирования,
+            // где создастся новый пост.
+
+            val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                    as NavHostFragment
+            fragment.navController.navigate(
+                R.id.action_feedFragment_to_newPostFragment,
+                Bundle().apply { textArg = text }
+            )
         }
-        val text = intent.getStringExtra(Intent.EXTRA_TEXT)
-        if (text.isNullOrBlank()) return
-
-        Snackbar.make(binding.root, text, Snackbar.LENGTH_INDEFINITE)
-            .setAction(android.R.string.ok) { finish() }
-            .show()
-
-        // Берется текст поста из этого неявного интента и передается в функцию редактирования,
-        // где создастся новый пост.
-
-        val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-                as NavHostFragment
-        fragment.navController.navigate(
-            R.id.action_feedFragment_to_newPostFragment,
-            Bundle().apply { textArg = text }
-        )
     }
 }
