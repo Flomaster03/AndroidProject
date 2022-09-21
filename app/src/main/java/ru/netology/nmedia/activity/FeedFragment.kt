@@ -8,10 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
+import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
+import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewModel.PostViewModel
 
 class FeedFragment : Fragment() {
@@ -50,10 +55,17 @@ class FeedFragment : Fragment() {
             startActivity(shareIntent)
         }
 
-      viewModel.videoPlayEvent.observe(viewLifecycleOwner) { videoLink ->
-          val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
-          startActivity(intent)
-      }
+        viewModel.editPostEvent.observe(viewLifecycleOwner) { post ->
+            findNavController().navigate(
+                R.id.action_feedFragment_to_newPostFragment,
+                Bundle().apply { textArg = post.content })
+        }
+
+
+        viewModel.videoPlayEvent.observe(viewLifecycleOwner) { videoLink ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
+            startActivity(intent)
+        }
 
         return binding.root
     }
