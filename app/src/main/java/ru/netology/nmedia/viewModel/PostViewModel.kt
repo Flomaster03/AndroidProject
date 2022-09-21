@@ -59,7 +59,7 @@ class PostViewModel(
     override fun onRemoveClicked(post: Post) = repository.delete(post.id)
 
     override fun onEditClicked(post: Post) {
-        //currentPost.value = post
+        currentPost.value = post
         editPostEvent.value = post
 
     }
