@@ -23,6 +23,8 @@ class PostViewModel(
 
     val shareEvent = SingleLiveEvent<Post>()
 
+    val singlePostEvent = SingleLiveEvent<Long>()
+
     val videoPlayEvent = SingleLiveEvent<String>()
 
     val currentPost = MutableLiveData<Post?>(null)
@@ -63,4 +65,9 @@ class PostViewModel(
         editPostEvent.value = post
 
     }
+
+    override fun onSinglePostClicked(post: Post) {
+        singlePostEvent.value = post.id
+    }
+
 }

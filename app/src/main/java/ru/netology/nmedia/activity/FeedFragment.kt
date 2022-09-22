@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
+import ru.netology.nmedia.activity.SingleFragment.Companion.longArg
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
@@ -65,6 +67,13 @@ class FeedFragment : Fragment() {
         viewModel.videoPlayEvent.observe(viewLifecycleOwner) { videoLink ->
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
             startActivity(intent)
+        }
+
+        viewModel.singlePostEvent.observe(viewLifecycleOwner) { id ->
+            findNavController().navigate(
+                R.id.action_feedFragment_to_singleFragment,
+                Bundle().apply { longArg = id }
+            )
         }
 
         return binding.root
