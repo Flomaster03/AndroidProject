@@ -43,15 +43,17 @@ class PostsAdapter(
         }
 
         init {
-            binding.likes.setOnClickListener {
-                listener.onLikeClicked(post)
-            }
-            binding.share.setOnClickListener {
-                listener.onShareClicked(post)
-            }
+            binding.likes.setOnClickListener { listener.onLikeClicked(post) }
+            binding.share.setOnClickListener { listener.onShareClicked(post) }
             binding.optionsMenu.setOnClickListener{popupMenu.show()}
+
             binding.videoContent.setOnClickListener { listener.onVideoPlayButtonClicked(post)}
             binding.videoPlay.setOnClickListener { listener.onVideoPlayButtonClicked(post)}
+
+            binding.content.setOnClickListener { listener.onSinglePostClicked(post) }
+            binding.authorName.setOnClickListener { listener.onSinglePostClicked(post) }
+            binding.published.setOnClickListener { listener.onSinglePostClicked(post) }
+            binding.avatar.setOnClickListener { listener.onSinglePostClicked(post) }
         }
 
         fun bind(post: Post) {

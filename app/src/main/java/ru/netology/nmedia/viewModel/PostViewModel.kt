@@ -17,17 +17,19 @@ class PostViewModel(
 ) : AndroidViewModel(application),
     PostInteractionListener {
 
-    private val repository: PostRepository = FilePostRepository(application)
+    private val repository: PostRepository = SharePrefsPostRepository(application)
 
     val data by repository::data
 
     val shareEvent = SingleLiveEvent<Post>()
 
+    val singlePostEvent = SingleLiveEvent<Long>()
+
     val videoPlayEvent = SingleLiveEvent<String>()
 
     val currentPost = MutableLiveData<Post?>(null)
 
-    val navigateToPostContentScreenEvent = SingleLiveEvent<String?>()
+    val editPostEvent = SingleLiveEvent<Post>()
 
     fun onSaveButtonClick(content: String) {
         if (content.isBlank()) return
@@ -44,19 +46,10 @@ class PostViewModel(
         currentPost.value = null
     }
 
-    fun onCancelButtonClick() {
-        currentPost.value = null
-    }
-
-    fun onAddButtonClicked() {
-        navigateToPostContentScreenEvent.call()
-    }
-
     override fun onVideoPlayButtonClicked(post: Post) {
         currentPost.value = post
         videoPlayEvent.value = post.videoLink
     }
-
 
     override fun onLikeClicked(post: Post) = repository.like(post.id)
 
@@ -69,6 +62,12 @@ class PostViewModel(
 
     override fun onEditClicked(post: Post) {
         currentPost.value = post
-        navigateToPostContentScreenEvent.value = post.content
+        editPostEvent.value = post
+
     }
+
+    override fun onSinglePostClicked(post: Post) {
+        singlePostEvent.value = post.id
+    }
+
 }
