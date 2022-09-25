@@ -1,6 +1,5 @@
 package ru.netology.nmedia.data.impl
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dao.PostDao
 import ru.netology.nmedia.data.PostRepository
@@ -13,37 +12,17 @@ class SQLiteRepository(private val dao: PostDao) : PostRepository {
             "Data value should be not null"
         }
 
-    override val data: MutableLiveData<List<Post>>
+    override val data = MutableLiveData(dao.getAll())
 
-    init {
-        val initialPosts = dao.getAll()
-        data = MutableLiveData(initialPosts)
-    }
-
-    override fun like(id: Long) {
-        data.value = posts.map {
-            if (it.id != id) it
-            else it.copy(
-                likedByMe = !it.likedByMe,
-                likes = if (!it.likedByMe) it.likes + 1 else it.likes - 1
-            )
-        }
-    }
 
     override fun share(id: Long) {
+        dao.share(id)
         data.value = posts.map {
-            if (it.id != id) it
-            else it.copy(
+            if (it.id != id) it else it.copy(
                 shares = it.shares + 1
             )
         }
     }
-
-    override fun delete(id: Long) {
-        data.value = posts.filter { it.id != id }
-    }
-
-    fun getAll(): LiveData<List<Post>> = data
 
     override fun save(post: Post) {
         val id = post.id
@@ -58,7 +37,7 @@ class SQLiteRepository(private val dao: PostDao) : PostRepository {
 
     }
 
-    fun likeById(id: Long) {
+    override fun like(id: Long) {
         dao.likeById(id)
         data.value = posts.map {
             if (it.id != id) it else it.copy(
@@ -69,7 +48,7 @@ class SQLiteRepository(private val dao: PostDao) : PostRepository {
 
     }
 
-    fun removeById(id: Long) {
+    override fun delete(id: Long) {
         dao.removeById(id)
         data.value= posts.filter { it.id != id }
     }
