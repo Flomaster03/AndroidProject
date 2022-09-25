@@ -1,8 +1,9 @@
 package ru.netology.nmedia.db
 
-object PostsTable {
+object PostsTable { // фиксируем названия
     const val NAME = "posts"
 
+    // скрипт для создания таблицы
     val DDL = """
         CREATE TABLE $NAME (
             ${Column.ID.columnName} INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,7 +17,7 @@ object PostsTable {
         );
         """.trimIndent()
 
-
+    // массив строк всех колонок
     val ALL_COLUMNS_NAMES = Column.values().map {
         it.columnName
     }.toTypedArray()

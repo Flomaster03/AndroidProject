@@ -9,10 +9,12 @@ class DbHelper(
     dbVersion: Int,
     dbName: String,
     private val DDLs: Array<String>
-    ) : SQLiteOpenHelper(context, dbName, null, dbVersion) {
+) : SQLiteOpenHelper(context, dbName, null, dbVersion) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        DDLs.forEach (db :: execSQL)
+        DDLs.forEach {
+            db.execSQL(it)
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

@@ -2,10 +2,8 @@ package ru.netology.nmedia.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import ru.netology.nmedia.dao.PostDao
 
-
-class AppDb private constructor(db: SQLiteDatabase) {
+class AppDb private constructor(db: SQLiteDatabase) { // сама бд
     val postDao: PostDao = PostDaoImpl(db)
 
     companion object {
